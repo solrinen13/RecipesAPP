@@ -8,15 +8,16 @@ import pro.sky.recipesapp.services.RecipesService;
 @RestController
 @RequestMapping("/ingredients")
 public class IngredientsController {
-    private IngredientsService ingredientsService;
+    private final IngredientsService ingredientsService;
 
 
-    public IngredientsController (IngredientsService ingredientsService){
+    public IngredientsController (@RequestBody IngredientsService ingredientsService){
         this.ingredientsService = ingredientsService;
     }
 
     @PostMapping("/add")
-    public void createRecipe( Ingredients ingredient){
+    @ResponseBody
+    public void createRecipe( @RequestBody Ingredients ingredient){
         ingredientsService.addIngredient(ingredient);
     }
 
