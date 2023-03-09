@@ -13,16 +13,21 @@ public class RecipesController {
     private RecipesService recipesService;
 
 
-    public RecipesController ( RecipesService recipesService){
+
+    public RecipesController (@RequestBody RecipesService recipesService){
         this.recipesService = recipesService;
     }
 
-   @PostMapping("/add")
-   public void createRecipe ( Recipes recipes){
+
+    @PostMapping("/add")
+    @ResponseBody
+   public void createRecipe (@RequestBody Recipes recipes){
        recipesService.addRecipes(recipes);
     }
 
-   @GetMapping("/get")
+
+    @GetMapping("/get")
+    @ResponseBody
     public  Recipes getRecipe(@RequestParam long recipeNumber) {
         return recipesService.getRecipe(recipeNumber);
     }

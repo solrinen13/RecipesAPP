@@ -5,7 +5,8 @@ import pro.sky.recipesapp.model.Ingredients;
 import pro.sky.recipesapp.model.Recipes;
 import pro.sky.recipesapp.services.IngredientsService;
 import pro.sky.recipesapp.services.RecipesService;
-
+@RestController
+@RequestMapping("/ingredients")
 public class IngredientsController {
     private IngredientsService ingredientsService;
 
@@ -20,7 +21,7 @@ public class IngredientsController {
     }
 
     @GetMapping("/get")
-    public  Recipes getRecipe(@RequestParam long recipeNumber) {
+    public  Ingredients getRecipe(@RequestParam long recipeNumber) {
         return ingredientsService.getIngredient(recipeNumber);
     }
 }
