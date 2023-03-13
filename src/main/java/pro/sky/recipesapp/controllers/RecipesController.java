@@ -3,14 +3,17 @@ package pro.sky.recipesapp.controllers;
 import org.springframework.web.bind.annotation.*;
 import pro.sky.recipesapp.model.Recipes;
 import pro.sky.recipesapp.services.RecipesService;
-import pro.sky.recipesapp.services.impl.RecipesServiceImpl;
 
-import java.util.Map;
+
+import java.util.Collection;
+
+
+import static pro.sky.recipesapp.services.impl.RecipesServiceImpl.getLastId;
 
 @RestController
 @RequestMapping("/recipe")
 public class RecipesController {
-    private RecipesService recipesService;
+    private final RecipesService recipesService;
 
 
 
@@ -19,16 +22,31 @@ public class RecipesController {
     }
 
 
-    @PostMapping("/add")
+    @PostMapping
     @ResponseBody
-   public void createRecipe (@RequestBody Recipes recipes){
-       recipesService.addRecipes(recipes);
+    public String createRecipe (@RequestBody Recipes recipes){
+        recipesService.addRecipes(recipes);
+        return "Рецепт был создан и его айди = " + getLastId();
+
     }
 
+    @GetMapping("/{id}")
+    public Recipes getRecipe(@PathVariable long id) {
+        return recipesService.getRecipe(id);
+    }
 
-    @GetMapping("/get")
+    @GetMapping
+    public Collection<Recipes> getAllrecipes( ) {
+        return recipesService.getRecipes();
+    }
+    @PutMapping("/{id}")
     @ResponseBody
-    public  Recipes getRecipe(@RequestParam long recipeNumber) {
-        return recipesService.getRecipe(recipeNumber);
+    public Recipes updateIngredient( @PathVariable long id, @RequestBody Recipes ingredient){
+        return recipesService.updateRecipe(id,ingredient);
+    }
+
+    @DeleteMapping("/{id}")
+    public  Recipes deleteIngredient(@PathVariable long id) {
+        return recipesService.deleteIngredient(id);
     }
 }

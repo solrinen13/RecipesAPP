@@ -5,7 +5,9 @@ import org.springframework.stereotype.Service;
 import pro.sky.recipesapp.model.Ingredients;
 import pro.sky.recipesapp.services.IngredientsService;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -22,7 +24,23 @@ public class IngredientsServiceImpl implements IngredientsService {
     }
 
     @Override
-    public Ingredients getIngredient(long ingredientNumber) {
-        return ingredientsMap.get(ingredientNumber);
+    public Ingredients getIngredient(long id) {
+        return ingredientsMap.get(id);
+    }
+
+    @Override
+    public Collection<Ingredients> getIngredients() {
+        return ingredientsMap.values();
+    }
+
+    @Override
+    public Ingredients updateIngredient(long id, Ingredients ingredient) {
+        ingredientsMap.replace(id,ingredient);
+        return getIngredient(id);
+    }
+
+    @Override
+    public Ingredients deleteIngredient(long id) {
+        return ingredientsMap.remove(id);
     }
 }
