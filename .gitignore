@@ -31,3 +31,6 @@ build/
 ### VS Code ###
 .vscode/
 /.mvn/
+/src/main/java/pro/sky/recipesapp/
+/mvnw.cmd
+/mvnw

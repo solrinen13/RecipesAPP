@@ -1,0 +1,79 @@
+GET http://localhost:8080/
+###
+GET http://localhost:8080/info
+###
+POST http://localhost:8080/recipe
+Content-Type: application/json
+
+{
+  "recipesName": "рецептик",
+  "timeToCook": 5,
+  "listIngredients": [
+    {
+      "ingredientName": "ингредиент",
+      "quantityIngredients": 2,
+      "typeUnitIngredients": "km"
+    },
+    {
+      "ingredientName": "ингредиент 2",
+      "quantityIngredients": 1,
+      "typeUnitIngredients": "морские мили"
+    }
+  ],
+  "cookSteps": [
+    "взболтать",
+    "не смешивать"
+  ]
+}
+###
+GET http://localhost:8080/recipe/1
+###
+PUT http://localhost:8080/recipe/1
+Content-Type: application/json
+
+{
+  "recipesName": "круасаны",
+  "timeToCook": 5,
+  "listIngredients": [
+    {
+      "ingredientName": "ингредиент",
+      "quantityIngredients": 2,
+      "typeUnitIngredients": "km"
+    },
+    {
+      "ingredientName": "ингредиент 2",
+      "quantityIngredients": 1,
+      "typeUnitIngredients": "морские мили"
+    }
+  ],
+  "cookSteps": [
+    "взболтать",
+    "не смешивать"
+  ]
+}
+###
+DELETE http://localhost:8080/recipe/1
+###
+POST http://localhost:8080/ingredients
+Content-Type: application/json
+
+{
+  "ingredientName": "огурец",
+  "quantityIngredients": 4,
+  "typeUnitIngredients": "шт"
+
+}
+###
+GET http://localhost:8080/ingredients/1
+###
+PUT http://localhost:8080/ingredients/1
+Content-Type: application/json
+
+{
+  "ingredientName": "собаки",
+  "quantityIngredients": 4,
+  "typeUnitIngredients": "шт"
+}
+###
+DELETE http://localhost:8080/ingredients/1
+###
